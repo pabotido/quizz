@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm từ file Word by Xuan Phu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js" defer></script>
+  <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">DOCX Quiz</p>
+        <h1>Trắc nghiệm từ file Word by Xuan Phu</h1>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Tải file quiz">
+      <div class="file-controls">
+        <input type="file" id="fileInput" accept=".docx">
+        <button id="loadQuizButton" type="button">Tải quiz</button>
+        <button id="formatGuideButton" type="button" class="secondary-button">Hướng dẫn format Word</button>
+      </div>
+    </section>
+
+    <section id="formatGuide" class="format-guide" hidden>
+      <h2>Cách sắp xếp file Word</h2>
+      <p>Mỗi câu hỏi nên viết theo mẫu sau:</p>
+      <pre><code>Câu 1: UML là gì?
+A. Ngôn ngữ mô hình hóa thống nhất *
+B. Hệ điều hành
+C. Ngôn ngữ lập trình
+D. Framework</code></pre>
+
+      <p>Cách đánh dấu đáp án đúng:</p>
+      <ul>
+        <li>Thêm dấu <strong>*</strong> ở cuối đáp án đúng.</li>
+        <li>Hoặc viết một dòng riêng: <strong>Đáp án: A</strong>.</li>
+        <li>Mỗi đáp án bắt đầu bằng <strong>A.</strong>, <strong>B.</strong>, <strong>C.</strong>, <strong>D.</strong>.</li>
+        <li>Mỗi câu hỏi bắt đầu bằng <strong>Câu 1:</strong>, <strong>Câu 2:</strong> hoặc <strong>1.</strong>, <strong>2.</strong>.</li>
+      </ul>
+
+      <p>Ví dụ dùng dòng đáp án riêng:</p>
+      <pre><code>Câu 2: HTML dùng để làm gì?
+A. Tạo cấu trúc trang web
+B. Thiết kế cơ sở dữ liệu
+C. Chạy hệ điều hành
+D. Nén file
+Đáp án: A</code></pre>
+    </section>
+
+    <section id="quizContainer" class="quiz-container" hidden>
+      <div class="quiz-header">
+        <h2 id="questionNumber"></h2>
+      </div>
+
+      <div class="question" id="questionText"></div>
+      <div class="options" id="options"></div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <div class="actions">
+        <button id="prevButton" type="button" class="secondary-button">Trước</button>
+        <button id="nextButton" type="button">Tiếp theo</button>
+        <button id="finishButton" type="button" class="danger-button">Kết thúc</button>
+      </div>
+
+      <div id="score" class="score"></div>
+    </section>
+  </main>
+</body>
+</html>

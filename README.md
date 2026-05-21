@@ -1,43 +1,35 @@
-# Trắc nghiệm từ file Word
+# DOCX Quiz
 
-Ứng dụng web dùng để tạo bài trắc nghiệm từ file Word định dạng `.docx`. Người dùng chọn file câu hỏi, tải quiz lên trình duyệt và làm bài trực tiếp trên trang web.
+Ứng dụng web tạo bài trắc nghiệm từ file Word `.docx`. Người dùng chỉ cần chọn file câu hỏi, tải quiz lên trình duyệt và làm bài trực tiếp, không cần cài đặt server hay backend.
 
-## Mục Đích Dự Án
+> Dự án phục vụ học tập, ôn tập và thực hành HTML, CSS, JavaScript.
 
-Dự án này được xây dựng để phục vụ học tập, ôn tập và thực hành kiến thức lập trình web cơ bản với HTML, CSS và JavaScript.
+## Tính năng
 
-**Dự án này dành cho học tập, không làm vì mục đích thương mại.**
-
-## Tính Năng
-
-- Tải câu hỏi trắc nghiệm từ file Word `.docx`.
-- Đọc nội dung file Word trực tiếp trên trình duyệt bằng Mammoth.js.
+- Đọc câu hỏi từ file Word `.docx` bằng Mammoth.js.
 - Tự động phân tích câu hỏi và đáp án theo format có sẵn.
-- Hiển thị từng câu hỏi một.
-- Chỉ hiển thị nội dung đầu bài, không hiển thị tiền tố như `Câu 1:`.
-- Xáo trộn thứ tự câu hỏi khi bắt đầu quiz.
-- Xáo trộn thứ tự đáp án trong mỗi câu hỏi.
-- Khi chọn đúng, nút đã chọn chuyển màu xanh và tự chuyển sang câu tiếp theo.
-- Khi chọn sai, nút đã chọn chuyển màu đỏ và hiển thị thêm ô đáp án đúng bên dưới.
-- Mỗi câu hỏi chỉ được chọn đáp án một lần.
-- Sau khi chọn đáp án, các đáp án của câu đó bị khóa.
-- Có thể bấm `Tiếp theo` để chuyển câu ngay.
-- Có thể quay lại câu trước bằng nút `Trước`.
-- Khi bấm `Kết thúc`, ứng dụng hỏi xác nhận trước khi nộp bài.
-- Khi kết thúc, hiển thị tổng điểm và danh sách chi tiết các câu đã trả lời.
-- Trong danh sách kết quả, câu sai sẽ hiển thị lựa chọn của người dùng và đáp án đúng.
-- Có nút hướng dẫn format file Word trên giao diện.
+- Hỗ trợ đánh dấu đáp án đúng bằng dấu `*` hoặc dòng `Đáp án: A`.
+- Xáo trộn thứ tự câu hỏi khi bắt đầu bài làm.
+- Xáo trộn thứ tự đáp án trong từng câu hỏi.
+- Hiển thị từng câu hỏi một, dễ theo dõi khi ôn tập.
+- Khóa đáp án sau khi người dùng đã chọn.
+- Hiển thị màu xanh khi trả lời đúng, màu đỏ khi trả lời sai.
+- Hiển thị đáp án đúng nếu người dùng chọn sai.
+- Tự chuyển sang câu tiếp theo sau khi trả lời.
+- Có nút `Trước`, `Tiếp theo` và `Kết thúc`.
+- Xác nhận trước khi kết thúc bài làm.
+- Hiển thị điểm số và danh sách kết quả chi tiết sau khi nộp bài.
+- Có hướng dẫn format file Word ngay trên giao diện.
 - Giao diện responsive, dùng được trên máy tính và điện thoại.
-- Thiết kế gọn, chuyên nghiệp, không bo góc quá `2px`.
 
-## Công Nghệ
+## Công nghệ sử dụng
 
 - HTML5
 - CSS3
 - JavaScript thuần
-- Mammoth.js để đọc nội dung file `.docx`
+- Mammoth.js
 
-## Cấu Trúc Dự Án
+## Cấu trúc thư mục
 
 ```text
 quizz/
@@ -52,64 +44,22 @@ quizz/
     └── question.docx
 ```
 
-## Vai Trò Từng File Và Thư Mục
-
-### `index.html`
-
-File giao diện chính của ứng dụng. File này chứa cấu trúc HTML, liên kết tới CSS, JavaScript và thư viện Mammoth.js.
-
-### `assets/css/style.css`
-
-File chứa toàn bộ style của ứng dụng:
-
-- Bố cục tổng thể.
-- Màu sắc và font chữ.
-- Giao diện nút bấm.
-- Giao diện câu hỏi và đáp án.
-- Trạng thái đúng/sai.
-- Ô hiển thị đáp án đúng khi trả lời sai.
-- Danh sách kết quả sau khi hoàn thành quiz.
-- Responsive cho điện thoại.
-
-### `assets/js/script.js`
-
-File chứa toàn bộ logic xử lý quiz:
-
-- Đọc file `.docx`.
-- Tách câu hỏi và đáp án.
-- Xác định đáp án đúng.
-- Hiển thị câu hỏi.
-- Xử lý chọn đáp án.
-- Tính điểm.
-- Tự chuyển câu khi trả lời đúng.
-- Hiển thị đáp án đúng khi trả lời sai.
-- Hiển thị tổng kết chi tiết sau khi làm xong.
-- Bật/tắt khung hướng dẫn format Word.
-
-### `samples/question.docx`
-
-File Word mẫu để tham khảo format câu hỏi.
-
-### `README.md`
-
-File tài liệu mô tả dự án, cách dùng, format câu hỏi và cấu trúc thư mục.
-
-## Cách Sử Dụng
+## Cách chạy
 
 1. Mở file `index.html` bằng trình duyệt.
 2. Bấm `Choose File` hoặc `Chọn tệp`.
 3. Chọn file Word định dạng `.docx`.
 4. Bấm `Tải quiz`.
-5. Chọn một đáp án cho từng câu.
-6. Sau khi chọn đáp án, quiz tự chuyển sang câu tiếp theo sau 10 giây.
-7. Nếu chọn sai, xem ô đáp án đúng bên dưới trước khi quiz chuyển câu.
-8. Bấm `Kết thúc`, xác nhận nộp bài, rồi xem điểm và danh sách câu đã trả lời.
+5. Chọn đáp án cho từng câu hỏi.
+6. Bấm `Kết thúc` để nộp bài và xem kết quả.
 
-## Format File Word
+Ứng dụng chạy trực tiếp trên trình duyệt. File Word được xử lý ở phía client, không cần upload lên server.
 
-File Word cần được viết theo một trong hai cách sau.
+## Format file Word
 
-### Cách 1: Đánh Dấu Đáp Án Đúng Bằng Dấu `*`
+File Word cần viết theo một trong hai cách dưới đây.
+
+### Cách 1: Đánh dấu đáp án đúng bằng dấu `*`
 
 ```text
 Câu 1: UML là gì?
@@ -119,9 +69,9 @@ C. Ngôn ngữ lập trình
 D. Framework
 ```
 
-Trong cách này, đáp án đúng là dòng có dấu `*`.
+Dòng có dấu `*` sẽ được xem là đáp án đúng.
 
-### Cách 2: Ghi Đáp Án Đúng Bằng Dòng Riêng
+### Cách 2: Ghi đáp án đúng bằng dòng riêng
 
 ```text
 Câu 2: HTML dùng để làm gì?
@@ -132,54 +82,62 @@ D. Nén file
 Đáp án: A
 ```
 
-Trong cách này, đáp án đúng được ghi ở dòng `Đáp án: A`.
+Ứng dụng sẽ lấy chữ cái trong dòng `Đáp án: A` để xác định lựa chọn đúng.
 
-## Quy Tắc Viết Câu Hỏi
+## Quy tắc viết câu hỏi
 
 - Mỗi câu hỏi bắt đầu bằng `Câu 1:`, `Câu 2:` hoặc `1.`, `2.`.
 - Mỗi đáp án bắt đầu bằng `A.`, `B.`, `C.`, `D.`.
 - Mỗi câu nên có 4 đáp án.
-- Mỗi câu nên có đúng một đáp án đúng.
+- Mỗi câu chỉ nên có một đáp án đúng.
 - File phải là `.docx`, không phải `.doc` hoặc `.pdf`.
-- Không nên để format quá phức tạp trong file Word.
+- Nên dùng định dạng Word đơn giản để ứng dụng đọc chính xác.
 
-## Luồng Hoạt Động
+## Luồng hoạt động
 
 1. Người dùng chọn file `.docx`.
-2. Ứng dụng đọc nội dung file bằng Mammoth.js.
-3. JavaScript chuyển nội dung thành danh sách câu hỏi.
-4. Câu hỏi và đáp án được xáo trộn.
-5. Người dùng chọn đáp án.
-6. Nút đã chọn đổi màu xanh hoặc đỏ.
-7. Các đáp án bị khóa sau khi chọn.
-8. Sau khi trả lời, quiz tự chuyển sang câu tiếp theo sau 10 giây.
-9. Nếu trả lời sai, quiz hiển thị ô đáp án đúng trong thời gian chờ chuyển câu.
-10. Khi kết thúc, ứng dụng hiển thị tổng điểm và danh sách chi tiết từng câu.
+2. Mammoth.js đọc nội dung văn bản từ file Word.
+3. JavaScript tách nội dung thành danh sách câu hỏi và đáp án.
+4. Ứng dụng xáo trộn câu hỏi và đáp án.
+5. Người dùng trả lời từng câu.
+6. Ứng dụng chấm đúng/sai và khóa câu đã trả lời.
+7. Khi kết thúc, ứng dụng hiển thị tổng điểm và chi tiết từng câu.
 
-## Lưu Ý
+## Vai trò các file chính
 
-- Ứng dụng chạy trực tiếp trên trình duyệt, không cần server riêng.
-- File Word được xử lý ở phía trình duyệt.
-- Dự án hiện chỉ hỗ trợ dạng câu hỏi trắc nghiệm A, B, C, D.
-- Nếu format file Word không đúng, ứng dụng có thể không đọc được câu hỏi.
-- Nếu câu hỏi không có đáp án đúng, hệ thống có thể không tính điểm chính xác cho câu đó.
+### `index.html`
 
-## Giới Hạn Hiện Tại
+Chứa giao diện chính của ứng dụng, liên kết tới CSS, JavaScript và thư viện Mammoth.js.
 
-- Chưa có lưu lịch sử làm bài.
-- Chưa có chức năng xuất kết quả.
+### `assets/css/style.css`
+
+Chứa toàn bộ phần giao diện: bố cục, màu sắc, nút bấm, trạng thái đúng/sai, kết quả và responsive.
+
+### `assets/js/script.js`
+
+Xử lý logic chính: đọc file `.docx`, phân tích câu hỏi, xáo trộn, hiển thị quiz, chấm điểm và render kết quả.
+
+### `samples/question.docx`
+
+File Word mẫu để tham khảo format câu hỏi.
+
+## Giới hạn hiện tại
+
+- Chưa lưu lịch sử làm bài.
 - Chưa có bộ đếm thời gian hiển thị trên giao diện.
-- Chưa hỗ trợ câu hỏi nhiều đáp án đúng.
+- Chưa hỗ trợ câu hỏi có nhiều đáp án đúng.
 - Chưa hỗ trợ đăng nhập hoặc quản lý người dùng.
+- Chưa có chức năng xuất kết quả.
 
-## Có Thể Phát Triển Thêm
+## Gợi ý phát triển thêm
 
-- Thêm bộ đếm thời gian hiển thị trên màn hình.
+- Thêm bộ đếm thời gian.
 - Cho phép chọn số lượng câu hỏi.
 - Cho phép bật/tắt xáo trộn câu hỏi và đáp án.
-- Lưu kết quả làm bài vào trình duyệt.
+- Lưu kết quả vào trình duyệt bằng `localStorage`.
+- Xuất kết quả ra file.
 - Hỗ trợ nhiều định dạng câu hỏi hơn.
 
-## Ghi Chú Sử Dụng
+## Ghi chú
 
-Dự án này chỉ được dùng cho mục đích học tập, tham khảo và thực hành. Không sử dụng dự án này cho mục đích thương mại nếu chưa có sự cho phép của tác giả hoặc người sở hữu mã nguồn.
+Dự án này dành cho mục đích học tập, tham khảo và thực hành. Nếu dùng lại hoặc phát triển tiếp, hãy ghi rõ nguồn và kiểm tra quyền sử dụng mã nguồn theo nhu cầu của bạn.

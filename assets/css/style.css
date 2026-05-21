@@ -272,6 +272,16 @@ button:disabled {
   font-size: 1rem;
 }
 
+.correct-answer-box {
+  padding: 12px 14px;
+  border: 1px solid var(--error-border);
+  border-left-width: 4px;
+  border-radius: 2px;
+  background: var(--error-bg);
+  color: var(--error-text);
+  overflow-wrap: anywhere;
+}
+
 .correct-text {
   color: var(--success-text);
 }
@@ -293,6 +303,41 @@ button:disabled {
   margin-top: 18px;
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+.result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.result-item {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  background: var(--surface-muted);
+}
+
+.result-item h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.result-item p {
+  margin-bottom: 10px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.result-correct {
+  border-left-color: var(--success-border);
+}
+
+.result-wrong {
+  border-left-color: var(--error-border);
 }
 
 @media (max-width: 640px) {

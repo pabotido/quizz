@@ -17,14 +17,15 @@ Dự án này được xây dựng để phục vụ học tập, ôn tập và 
 - Chỉ hiển thị nội dung đầu bài, không hiển thị tiền tố như `Câu 1:`.
 - Xáo trộn thứ tự câu hỏi khi bắt đầu quiz.
 - Xáo trộn thứ tự đáp án trong mỗi câu hỏi.
-- Khi chọn đúng, nút đã chọn chuyển màu xanh.
-- Khi chọn sai, nút đã chọn chuyển màu đỏ.
+- Khi chọn đúng, nút đã chọn chuyển màu xanh và tự chuyển sang câu tiếp theo.
+- Khi chọn sai, nút đã chọn chuyển màu đỏ và hiển thị thêm ô đáp án đúng bên dưới.
 - Mỗi câu hỏi chỉ được chọn đáp án một lần.
 - Sau khi chọn đáp án, các đáp án của câu đó bị khóa.
-- Sau khi chọn đáp án, tự chuyển sang câu tiếp theo sau 10 giây.
 - Có thể bấm `Tiếp theo` để chuyển câu ngay.
 - Có thể quay lại câu trước bằng nút `Trước`.
-- Hiển thị điểm khi bấm `Kết thúc`.
+- Khi bấm `Kết thúc`, ứng dụng hỏi xác nhận trước khi nộp bài.
+- Khi kết thúc, hiển thị tổng điểm và danh sách chi tiết các câu đã trả lời.
+- Trong danh sách kết quả, câu sai sẽ hiển thị lựa chọn của người dùng và đáp án đúng.
 - Có nút hướng dẫn format file Word trên giao diện.
 - Giao diện responsive, dùng được trên máy tính và điện thoại.
 - Thiết kế gọn, chuyên nghiệp, không bo góc quá `2px`.
@@ -66,6 +67,8 @@ File chứa toàn bộ style của ứng dụng:
 - Giao diện nút bấm.
 - Giao diện câu hỏi và đáp án.
 - Trạng thái đúng/sai.
+- Ô hiển thị đáp án đúng khi trả lời sai.
+- Danh sách kết quả sau khi hoàn thành quiz.
 - Responsive cho điện thoại.
 
 ### `assets/js/script.js`
@@ -78,7 +81,9 @@ File chứa toàn bộ logic xử lý quiz:
 - Hiển thị câu hỏi.
 - Xử lý chọn đáp án.
 - Tính điểm.
-- Tự chuyển câu sau 10 giây.
+- Tự chuyển câu khi trả lời đúng.
+- Hiển thị đáp án đúng khi trả lời sai.
+- Hiển thị tổng kết chi tiết sau khi làm xong.
 - Bật/tắt khung hướng dẫn format Word.
 
 ### `samples/question.docx`
@@ -96,8 +101,9 @@ File tài liệu mô tả dự án, cách dùng, format câu hỏi và cấu tr�
 3. Chọn file Word định dạng `.docx`.
 4. Bấm `Tải quiz`.
 5. Chọn một đáp án cho từng câu.
-6. Sau khi chọn đáp án, chờ 10 giây để tự chuyển câu hoặc bấm `Tiếp theo`.
-7. Bấm `Kết thúc` để xem điểm.
+6. Sau khi chọn đáp án, quiz tự chuyển sang câu tiếp theo sau 10 giây.
+7. Nếu chọn sai, xem ô đáp án đúng bên dưới trước khi quiz chuyển câu.
+8. Bấm `Kết thúc`, xác nhận nộp bài, rồi xem điểm và danh sách câu đã trả lời.
 
 ## Format File Word
 
@@ -146,8 +152,9 @@ Trong cách này, đáp án đúng được ghi ở dòng `Đáp án: A`.
 5. Người dùng chọn đáp án.
 6. Nút đã chọn đổi màu xanh hoặc đỏ.
 7. Các đáp án bị khóa sau khi chọn.
-8. Sau 10 giây, quiz tự chuyển sang câu tiếp theo.
-9. Khi kết thúc, ứng dụng hiển thị tổng điểm.
+8. Sau khi trả lời, quiz tự chuyển sang câu tiếp theo sau 10 giây.
+9. Nếu trả lời sai, quiz hiển thị ô đáp án đúng trong thời gian chờ chuyển câu.
+10. Khi kết thúc, ứng dụng hiển thị tổng điểm và danh sách chi tiết từng câu.
 
 ## Lưu Ý
 
@@ -167,9 +174,7 @@ Trong cách này, đáp án đúng được ghi ở dòng `Đáp án: A`.
 
 ## Có Thể Phát Triển Thêm
 
-- Thêm bộ đếm 10 giây hiển thị trên màn hình.
-- Hiển thị đáp án đúng khi người dùng chọn sai.
-- Thêm màn hình tổng kết chi tiết từng câu.
+- Thêm bộ đếm thời gian hiển thị trên màn hình.
 - Cho phép chọn số lượng câu hỏi.
 - Cho phép bật/tắt xáo trộn câu hỏi và đáp án.
 - Lưu kết quả làm bài vào trình duyệt.

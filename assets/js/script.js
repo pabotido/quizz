@@ -5,14 +5,14 @@ let userAnswers = [];
 let autoNextTimer = null;
 
 const optionLetters = ['A', 'B', 'C', 'D'];
-const autoNextDelay = 10000;
+const correctNextDelay = 10000; // 10 giây sau khi trả lời đúng sẽ tự động chuyển câu hỏi tiếp theo
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('loadQuizButton').addEventListener('click', loadQuiz);
   document.getElementById('formatGuideButton').addEventListener('click', toggleFormatGuide);
   document.getElementById('prevButton').addEventListener('click', prevQuestion);
   document.getElementById('nextButton').addEventListener('click', nextQuestion);
-  document.getElementById('finishButton').addEventListener('click', finishQuiz);
+  document.getElementById('finishButton').addEventListener('click', confirmFinishQuiz);
 });
 
 function toggleFormatGuide() {
@@ -90,6 +90,7 @@ function startQuiz() {
   clearAutoNextTimer();
 
   document.getElementById('quizContainer').hidden = false;
+  document.querySelector('.actions').hidden = false;
   document.getElementById('score').innerHTML = '';
   showQuestion();
 }
@@ -98,6 +99,8 @@ function showQuestion() {
   clearAutoNextTimer();
 
   const question = questions[currentQuestion];
+  const selectedAnswer = userAnswers[currentQuestion];
+
   document.getElementById('questionNumber').textContent = `Câu ${currentQuestion + 1}/${questions.length}`;
   document.getElementById('questionText').textContent = getQuestionTitle(question.question);
 
@@ -114,10 +117,10 @@ function showQuestion() {
     button.className = 'option-button';
     button.textContent = option;
 
-    if (userAnswers[currentQuestion] !== null) {
+    if (selectedAnswer !== null) {
       button.disabled = true;
 
-      if (userAnswers[currentQuestion] === option) {
+      if (selectedAnswer === option) {
         button.classList.add(option === question.correct ? 'correct' : 'wrong');
       }
     } else {
@@ -128,6 +131,10 @@ function showQuestion() {
   });
 
   document.getElementById('feedback').innerHTML = '';
+
+  if (selectedAnswer !== null && selectedAnswer !== question.correct) {
+    showCorrectAnswer(question.correct);
+  }
 }
 
 function selectAnswer(selected, selectedButton) {
@@ -141,13 +148,14 @@ function selectAnswer(selected, selectedButton) {
     selectedButton.classList.add('correct');
   } else {
     selectedButton.classList.add('wrong');
+    showCorrectAnswer(question.correct);
   }
 
   document.querySelectorAll('#options button').forEach((button) => {
     button.disabled = true;
   });
 
-  autoNextTimer = setTimeout(nextQuestion, autoNextDelay);
+  autoNextTimer = setTimeout(nextQuestion, correctNextDelay);
 }
 
 function nextQuestion() {
@@ -170,12 +178,54 @@ function prevQuestion() {
   }
 }
 
+function confirmFinishQuiz() {
+  const shouldFinish = confirm('Bạn có chắc muốn kết thúc bài làm không?');
+
+  if (shouldFinish) {
+    finishQuiz();
+  }
+}
+
 function finishQuiz() {
   clearAutoNextTimer();
 
-  const resultHTML = `<h2>Kết quả: ${score}/${questions.length}</h2>`;
+  const resultHTML = `
+    <h2>Kết quả: ${score}/${questions.length}</h2>
+    <div class="result-list">
+      ${questions.map((question, index) => {
+        const selected = userAnswers[index];
+        const isCorrect = selected === question.correct;
+        const selectedText = selected || 'Chưa trả lời';
+
+        return `
+          <article class="result-item ${isCorrect ? 'result-correct' : 'result-wrong'}">
+            <h3>Câu ${index + 1}: ${escapeHTML(getQuestionTitle(question.question))}</h3>
+            <p>Lựa chọn của bạn: <strong>${escapeHTML(selectedText)}</strong></p>
+            ${isCorrect ? '' : `
+              <div class="correct-answer-box">
+                Đáp án đúng: <strong>${escapeHTML(question.correct || 'Không xác định')}</strong>
+              </div>
+            `}
+          </article>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  document.getElementById('questionNumber').textContent = 'Hoàn thành';
+  document.getElementById('questionText').textContent = `Bạn trả lời đúng ${score}/${questions.length} câu.`;
+  document.getElementById('options').innerHTML = '';
+  document.getElementById('feedback').innerHTML = '';
+  document.querySelector('.actions').hidden = true;
   document.getElementById('score').innerHTML = resultHTML;
-  alert(`Hoàn thành! Điểm của bạn: ${score}/${questions.length}`);
+}
+
+function showCorrectAnswer(correctAnswer) {
+  document.getElementById('feedback').innerHTML = `
+    <div class="correct-answer-box">
+      Đáp án đúng: <strong>${escapeHTML(correctAnswer || 'Không xác định')}</strong>
+    </div>
+  `;
 }
 
 function getQuestionTitle(questionText) {
@@ -187,6 +237,12 @@ function clearAutoNextTimer() {
     clearTimeout(autoNextTimer);
     autoNextTimer = null;
   }
+}
+
+function escapeHTML(value) {
+  const div = document.createElement('div');
+  div.textContent = value;
+  return div.innerHTML;
 }
 
 function shuffle(items) {
